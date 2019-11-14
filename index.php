@@ -1,14 +1,14 @@
-
+<?php include "config.inc"; ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Chaitra Chandra's Portfolio</title>
-    <meta name="description" content="Personal Portfolio of Chaitra Chandra, a JavaScript Full Stack Developer." />
+    <title><?php echo $config["name"]; ?>'s Portfolio</title>
+    <meta name="description" content="<?php echo $config["desc"]; ?>" />
     <meta name="author" content="Praveen Kumar Purushothaman" />
-    <meta property="og:image" content="https://i.imgur.com/kkl8HuK.jpg" />
+    <meta property="og:image" content="<?php echo $config["image"]; ?>" />
     <link rel="icon" href="images/favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" />
@@ -21,7 +21,7 @@
     </div>
     <div class="preloader-left"></div>
     <div class="inline-menu-container">
-      <span class="status">I am available for freelance</span>
+      <span class="status"><?php echo $config["freelancing"]; ?></span>
       <ul class="inline-menu">
         <li class="about menu-item">Resume</li>
         <li class="portfolio menu-item">Portfolio</li>
@@ -45,14 +45,13 @@
       <div class="container">
         <div class="name-block">
           <div class="name-block-container">
-            <h1><span>Hi, I'm</span>Chaitra Chandra</h1>
-            <h2>Full Stack Developer</h2>
+            <h1><span>Hi, I'm</span><?php echo $config["name"]; ?></h1>
+            <h2><?php echo $config["role"]; ?></h2>
             <a class="btn btn-download">Download Resume</a>
             <ul class="social">
-              <li><a href="https://www.linkedin.com/in/chaitra-chandra-564a61129/"><i class="ion-social-linkedin"></i></a></li>
-              <li><a href="https://www.facebook.com/profile.php?id=100008780987557"><i class="ion-social-facebook"></i></a></li>
-              <li><a href="https://www.instagram.com/chaithrachandra/"><i class="ion-social-instagram-outline"></i></a></li>
-              <li><a href="https://github.com/chaitraa"><i class="ion-social-octocat"></i></a></li>
+<?php foreach ($config["social"] as $social => $link) if (!empty($link)) { ?>
+              <li><a href="<?php echo $link; ?>"><i class="ion-social-<?php echo $social; ?>"></i></a></li>
+<?php } ?>
             </ul>
           </div>
         </div>
@@ -82,57 +81,29 @@
           <section class="content" id="about">
             <div class="block-content">
               <h3 class="block-title">Profile</h3>
-              <h3 class="subheading">I'm a <strong>JavaScript Full Stack Developer</strong> from India. I aim to make a difference through my creative solution.</h3>
-              <p>I'm a JavaScript developer with an interest in building the most efficient website possible. Currently getting my hands dirty on React JS &amp; Node JS</p><p>I have serious passion for UI effects, creating intuitive, dynamic user experiences.</p><p>I have been a web developer for about an year and I am currently looking for internship opportunities.</p>
+              <h3 class="subheading"><?php echo $config["profile"]["subheading"]; ?></h3>
+              <p><?php echo $config["profile"]["para"]; ?></p>
               <div class="info-list row">
-                <div class="col-sm-6"><span>Name:</span>             Chaitra Chandra</div>
-                <div class="col-sm-6"><span>Date of Birth:</span>    10 January 1995</div>
-                <div class="col-sm-6"><span>Address:</span>           71 Alyestone Road, LE27LL, Leicester, England, UK.</div>
-                <div class="col-sm-6"><span>Email:</span>            me@chaithra.me</div>
-                <div class="col-sm-6"><span>Phone:</span>            +44 7469309216</div>
-                <div class="col-sm-6"><span>Skype:</span>            chaitra</div>
-                <div class="col-sm-6"><span>Interest:</span>         Coding, Programming, Developing</div>
+                <div class="col-sm-6"><span>Name:</span>             <?php echo $config["name"]; ?></div>
+                <div class="col-sm-6"><span>Date of Birth:</span>    <?php echo $config["profile"]["bday"]; ?></div>
+                <div class="col-sm-6"><span>Address:</span>          <?php echo $config["profile"]["addr"]; ?></div>
+                <div class="col-sm-6"><span>Email:</span>            <?php echo $config["profile"]["email"]; ?></div>
+                <div class="col-sm-6"><span>Phone:</span>            <?php echo $config["profile"]["phone"]; ?></div>
+                <div class="col-sm-6"><span>Skype:</span>            <?php echo $config["profile"]["skype"]; ?></div>
+                <div class="col-sm-6"><span>Interest:</span>         <?php echo $config["profile"]["interests"]; ?></div>
               </div>
-              <img class="sign" src="https://i.imgur.com/bvkaSPp.png" alt="Chaitra Chandra" />
+              <img class="sign" src="<?php echo $config["sign"]; ?>" alt="<?php echo $config["name"]; ?>" />
             </div>
             <div class="block-content">
               <h3 class="block-title">Skills</h3>
-              <label class="progress-bar-label">Javascript - <span>3 years experience</span></label>
+<?php foreach ($config["skills"] as $skill) { ?>
+              <label class="progress-bar-label"><?php echo $skill[0]; ?> - <span><?php echo $skill[1]; ?> years experience</span></label>
               <div class="progress">
-                <div style="width: 95%;" class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
-                  <span>95%</span>
+                <div style="width: <?php echo $skill[2]; ?>%;" class="progress-bar" role="progressbar" aria-valuenow="<?php echo $skill[2]; ?>" aria-valuemin="0" aria-valuemax="100">
+                  <span><?php echo $skill[2]; ?>%</span>
                 </div>
               </div>
-              <label class="progress-bar-label">React JS - <span>2 years experience</span></label>
-              <div class="progress">
-                <div style="width: 85%;" class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                  <span>85%</span>
-                </div>
-              </div>
-              <label class="progress-bar-label">Node JS - <span>2 years experience</span></label>
-              <div class="progress">
-                <div style="width: 85%;" class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                  <span>85%</span>
-                </div>
-              </div>
-              <label class="progress-bar-label">MongoDB - <span>2 years experience</span></label>
-              <div class="progress">
-                <div style="width: 70%;" class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                  <span>70%</span>
-                </div>
-              </div>
-              <label class="progress-bar-label">HTML5 - <span>2 years experience</span></label>
-              <div class="progress">
-                <div style="width: 75%;" class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                  <span>75%</span>
-                </div>
-              </div>
-              <label class="progress-bar-label">CSS3 - <span>2 years experience</span></label>
-              <div class="progress">
-                <div style="width: 60%;" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                  <span>60%</span>
-                </div>
-              </div>
+<?php } ?>
             </div>
             <div class="block-content">
               <h3 class="block-title">Experience</h3>
@@ -140,20 +111,15 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="exp-holder">
+<?php foreach ($config["experience"] as $item) { ?>
                       <div class="exp">
                         <div class="hgroup">
-                          <h4><span>Data Analyst</span> @ AxisRooms Travel Distribution Ltd</h4>
-                          <h5>Jan 2017 - June 2017</h5>
+                          <h4><span><?php echo $item[0]; ?></span> @ <?php echo $item[1]; ?></h4>
+                          <h5><?php echo $item[2]; ?></h5>
                         </div>
-                        <p>Developed an application that stores the data exchanged between two systems.</p>
+                        <p><?php echo $item[3]; ?></p>
                       </div>
-                      <div class="exp">
-                        <div class="hgroup">
-                          <h4><span>Marketing Executive</span> @ S.R Fashions</h4>
-                          <h5>July 2017 - November 2018</h5>
-                        </div>
-                        <p>Represented the company in various client meets, presentations and conferences as well provided the insights to managing the team that made the work efficient and robust.</p>
-                      </div>
+<?php } ?>
                     </div>
                   </div>
                 </div>
@@ -165,13 +131,15 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="exp-holder">
+<?php foreach ($config["education"] as $item) { ?>
                       <div class="exp">
                         <div class="hgroup">
-                          <h4>Cloud Computing MSc | <span>Univeristy of Leicester</span></h4>
-                          <h5>Jan 2019 - Present</h5>
+                          <h4><?php echo $item[0]; ?> | <span><?php echo $item[1]; ?></span></h4>
+                          <h5><?php echo $item[2]; ?></h5>
                         </div>
-                        <p>This course covers the theoretical aspects of Computer Software and its Applications with basics of cloud computing concepts like agile cloud automation, Internet and networking with workshop experience.</p>
+                        <p><?php echo $item[3]; ?></p>
                       </div>
+<?php } ?>
                     </div>
                   </div>
                 </div>
@@ -268,7 +236,7 @@
             </div>
             <div class="row text-center">
               <div class="col-md-12 btn-email">
-                <a class="btn lowercase">me@chaithra.me</a>
+                <a class="btn lowercase"><?php echo $config["profile"]["email"]; ?></a>
               </div>
             </div>
           </section>
@@ -449,7 +417,7 @@
             </div>
             <div class="row text-center">
               <div class="col-md-12 btn-email">
-                <a class="btn lowercase">me@chaithra.me</a>
+                <a class="btn lowercase"><?php echo $config["profile"]["email"]; ?></a>
               </div>
             </div>
           </section>
@@ -598,7 +566,7 @@
                     </div>
                     <div class="contact-details">
                       <h5>Address</h5>
-                      <p> 71 Alyestone Road, LE27LL, Leicester, England, UK.</p>
+                      <p><?php echo $config["profile"]["addr"]; ?></p>
                     </div>
                   </div>
                   <div class="contact-content">
@@ -607,7 +575,7 @@
                     </div>
                     <div class="contact-details">
                       <h5>Call Me</h5>
-                      <p> <a href="tel:+44 7469309216">+44 7469309216</a></p>
+                      <p> <a href="tel:<?php echo $config["profile"]["phone"]; ?>"><?php echo $config["profile"]["phone"]; ?></a></p>
                     </div>
                   </div>
                   <div class="contact-content">
@@ -616,7 +584,7 @@
                     </div>
                     <div class="contact-details">
                       <h5>Enquiries</h5>
-                      <p><a href="mailto:me@chaithra.me">me@chaithra.me</a></p>
+                      <p><a href="mailto:<?php echo $config["profile"]["email"]; ?>"><?php echo $config["profile"]["email"]; ?></a></p>
                     </div>
                   </div>
                 </div>
